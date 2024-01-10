@@ -4,9 +4,9 @@ pragma solidity ^0.8.19;
 contract Keccak {
     string private s_flag = "HN0x03{Ges4pp3lleGrr00t!}";
 
-    function getFlag(bytes32 _hash) public view returns (string memory) {
+    function getFlag(bytes32 hash) public view returns (string memory) {
         require(
-            _hash == keccak256(abi.encodePacked(msg.sender)),
+            hash == keccak256(abi.encodePacked(msg.sender)),
             "Hash invalide"
         );
         return s_flag;
