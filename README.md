@@ -26,7 +26,7 @@
 Pseudo : v4ss<br/>
 Pro : [Florian Allione](https://www.linkedin.com/in/florian-allione-40879817a/)
 
-Pseudo : hig33<br />
+Pseudo : 33hig<br />
 Pro : [Rayan Guerroumi](https://www.linkedin.com/in/rayan-guerroumi-303645193/)
 
 # Write-up
@@ -35,4 +35,4 @@ Pro : [Rayan Guerroumi](https://www.linkedin.com/in/rayan-guerroumi-303645193/)
 | -------------- | ---------- | --------------------------------------------------------------- |
 | Keccak         | Blockchain | [v4ss](https://www.linkedin.com/in/florian-allione-40879817a/)  |
 | Keccak 2       | Blockchain | [v4ss](https://www.linkedin.com/in/florian-allione-40879817a/)  |
-| Fallback       | Blockchain | [hig33](https://www.linkedin.com/in/rayan-guerroumi-303645193/) |
+| Fallback       | Blockchain | [33hig](https://www.linkedin.com/in/rayan-guerroumi-303645193/) |
