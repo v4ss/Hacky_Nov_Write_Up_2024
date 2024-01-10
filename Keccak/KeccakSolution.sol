@@ -5,7 +5,7 @@ interface IKeccak {
     function getFlag(bytes32 _hash) external view returns (string memory);
 }
 
-contract CTFParticipantContract {
+contract HNParticipantContract {
     IKeccak keccakChallenge;
 
     constructor(address _keccakChallengeAddress) {

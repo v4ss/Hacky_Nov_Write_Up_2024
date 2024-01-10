@@ -1,26 +1,29 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-contract CTFChallenge {
-    string private flag = "CTF{Votre_Flag_Ici}";
-    address private owner;
-    uint256 private secretNumber;
+error Keccak2__Not_Owner();
+
+contract Keccak2 {
+    string private constant FLAG = "HN0x03{Tr4N5AcT10n!P3t4rd}";
+    address private immutable i_owner;
+    uint256 private s_secretNumber;
 
     constructor(uint256 _secretNumber) {
-        owner = msg.sender;
-        secretNumber = _secretNumber;
+        i_owner = msg.sender;
+        s_secretNumber = _secretNumber;
     }
 
     modifier onlyOwner() {
-        require(
-            msg.sender == owner,
-            "Seul le proprietaire peut appeler cette fonction"
-        );
+        // require(
+        //     msg.sender == i_owner,
+        //     "Seul le proprietaire peut appeler cette fonction"
+        // );
+        if (msg.sender != i_owner) revert Keccak2__Not_Owner();
         _;
     }
 
-    function changeSecretNumber(uint256 _newSecret) public onlyOwner {
-        secretNumber = _newSecret;
+    function setSecretNumber(uint256 _newSecret) public onlyOwner {
+        s_secretNumber = _newSecret;
     }
 
     function getFlag(
@@ -31,8 +34,8 @@ contract CTFChallenge {
             _hash == keccak256(abi.encodePacked(_guess, address(this))),
             "Hash invalide"
         );
-        require(_guess == secretNumber, "Nombre secret incorrect");
-        return flag;
+        require(_guess == s_secretNumber, "Nombre secret incorrect");
+        return FLAG;
     }
 }
 
