@@ -3,7 +3,7 @@ pragma solidity ^0.8.19;
 
 import "./Keccak.sol";
 
-contract Keccak2Solution {
+contract KeccakSolution {
     Keccak keccakChallenge;
 
     constructor(address _keccakChallengeAddress) {
