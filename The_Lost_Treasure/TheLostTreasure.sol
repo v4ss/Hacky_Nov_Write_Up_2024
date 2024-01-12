@@ -1,11 +1,9 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-contract TheLostTreasure {
-    // Une carte au trésor indiquant des directions pour aller jusqu'au trésor
-    // Des fonctions pour déplacer le sous-marin (devant-derriere-gauche-droite-bas-haut)
-    // Une fonction pour récupérer le coffre au trésor (si à la bonne position)
+error TheLostTreasure__InvalidPosition();
 
+contract TheLostTreasure {
     string[] private s_chestMap = [
         "devant",
         "devant",
@@ -20,27 +18,47 @@ contract TheLostTreasure {
         "droite",
         "devant"
     ];
-    string[] private s_submarineMoving;
+    string[] private s_submarinePosition;
+    string private s_theLostTreasure = "HN0x03{jUh5FFr!ED43gyppm}";
 
     function goForward() public {
-        s_submarineMoving.push("devant");
+        s_submarinePosition.push("devant");
     }
 
     function goBackward() public {
-        s_submarineMoving.push("derriere");
+        s_submarinePosition.push("derriere");
     }
 
     function goLeft() public {
-        s_submarineMoving.push("gauche");
+        s_submarinePosition.push("gauche");
     }
 
     function goRight() public {
-        s_submarineMoving.push("droite");
+        s_submarinePosition.push("droite");
     }
 
     function undoMoving() public {
-        s_submarineMoving.pop();
+        s_submarinePosition.pop();
     }
 
-    function resetPosition() public {}
+    function resetPosition() public {
+        delete s_submarinePosition;
+    }
+
+    function getTheLostTreasure() public view returns (string memory) {
+        if (
+            keccak256(abi.encode(s_submarinePosition)) !=
+            keccak256(abi.encode(s_chestMap))
+        ) revert TheLostTreasure__InvalidPosition();
+
+        return s_theLostTreasure;
+    }
+
+    function getSubmarinePosition() public view returns (string[] memory) {
+        return s_submarinePosition;
+    }
+
+    function getChestPosition() public view returns (string[] memory) {
+        return s_chestMap;
+    }
 }
