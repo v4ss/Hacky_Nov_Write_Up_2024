@@ -8,8 +8,8 @@ contract KeccakFactory {
     Keccak[] private s_keccakArray;
     mapping(address => Keccak) private s_addressToContract;
 
-    function createKeccakContract() public {
-        Keccak keccakContract = new Keccak();
+    function createKeccakInstance() public {
+        Keccak keccakContract = new Keccak(msg.sender);
         s_keccakArray.push(keccakContract);
         s_addressToContract[msg.sender] = keccakContract;
     }

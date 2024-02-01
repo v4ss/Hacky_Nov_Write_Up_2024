@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Hacky'Nov</title>
+        <link rel="stylesheet" href="styles.css" />
+    </head>
+    <body>
+        <script src="./index.js" type="module"></script>
+        <header>
+            <div class="logo-container">
+                <div class="logo"></div>
+                <div class="text-logo"></div>
+            </div>
+            <div>
+                <button id="connectButton"> Connect </button>
+            </div>
+        </header>
+
+        <main>
+            <div class="chall-description">
+                <h1>Keccak</h1>
+                <hr/>
+                <p>Votre mission est de récupérer un flag caché dans un contrat intelligent. Ce flag est protégé par un mécanisme de vérification unique basé sur le hashage et la connaissance de la Blockchain.</p>
+            </div>
+            <div class="code-container">
+                <pre>
+                    <code>
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.19;
+
+error Keccak__InvalidHash();
+
+contract Keccak {
+    address private s_owner;
+
+    constructor(address owner) {
+        s_owner = owner;
+    }
+
+    function changeOwner(bytes32 hash) public {
+        if (hash != keccak256(abi.encodePacked(msg.sender)))
+            revert Keccak__InvalidHash();
+
+        s_owner = msg.sender;
+    }
+
+    function getOwner() public view returns (address) {
+        return s_owner;
+    }
+}
+                    </code>
+                </pre>
+            </div>
+            <div class="address-container hide">
+                <p>Adresse de l'instance : <span id="instanceAddress"></span></p>
+            </div>
+            <div class="button-container">
+                <button id="instanceButton"> Déployer une instance du contract </button>
+                <button id="submitButton" class="hide"> Submit Contract </button>
+            </div>
+        </main>
+        <footer>
+            <div class="footer-logo"></div>
+            <div class="footer-author">
+                <p>By <a href="https://github.com/v4ss">v4ss</a></p>
+            </div>
+        </footer>
+        
+
+        <!-- <button id="balanceButton"> getBalance </button>
+        <button id="withdrawButton"> Withdraw </button>
+        
+        <label for="fund">ETH Amount</label>
+        <input id="ethAmount" type="text" placeholder="0.1"/>
+        <button id="fundButton"> Fund </button> -->
+    </body>
+</html>
