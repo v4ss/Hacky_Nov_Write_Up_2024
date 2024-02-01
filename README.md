@@ -16,7 +16,7 @@
   •
   <a href="https://www.twitch.tv/hackynov">Twitch</a>
   •
-  <a href="">Youtube (coming soon)</a>
+  <a href="https://www.youtube.com/@Hackynov">Youtube</a>
 </div>
 
 ---
