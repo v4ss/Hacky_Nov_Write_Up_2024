@@ -19,6 +19,10 @@ body {
     box-sizing: border-box;
 }
 
+button:hover {
+    cursor: pointer;
+}
+
 header {
     width: 100%;
     background: #112926;
@@ -38,14 +42,14 @@ header .logo-container {
 }
 
 header .logo {
-    background: url("./img/Logo-Hacky\'Nov-Depths-White.svg");
+    background: url("../img/Logo-Hacky\'Nov-Depths-White.svg");
     width: 150px;
     height: 150px;
     background-size: contain;
 }
 
 header .text-logo {
-    background: url("./img/Texte-Hacky\'Nov-Depths-White.svg");
+    background: url("../img/Texte-Hacky\'Nov-Depths-White.svg");
     background-size: contain;
     background-repeat: no-repeat;
     width: 350px;
@@ -123,6 +127,7 @@ main .code-container pre {
 }
 main .address-container {
     margin: 5px 0;
+    text-align: center;
 }
 
 main .address-container p {
@@ -154,7 +159,7 @@ footer {
 }
 
 footer .footer-logo {
-    background: url("./img/Texte-Hacky\'Nov-Depths-White.svg");
+    background: url("../img/Texte-Hacky\'Nov-Depths-White.svg");
     background-size: cover;
     background-repeat: no-repeat;
     width: 600px;

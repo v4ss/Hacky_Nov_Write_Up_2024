@@ -14,16 +14,6 @@ connectButton.onclick = connect;
 instanceButton.onclick = createInstance;
 submitButton.onclick = submit;
 
-const test = document.getElementById("test");
-test.onclick = teste;
-
-async function teste() {
-    const provider = new ethers.BrowserProvider(window.ethereum);
-    console.log(await provider.getNetwork());
-    const signer = await provider.getSigner();
-    console.log(signer);
-}
-
 async function loadDisplay() {
     if (typeof window.ethereum !== "undefined") {
         // Load connect button
@@ -121,7 +111,7 @@ async function createInstance() {
             // Hey, wait for this TX to finish
             await listenForTransactionMine(transactionResponse, provider);
             const instanceAddress = await factory.getMyContract();
-            console.log(`${await instanceAddress.getOwner()}`);
+            //console.log(`${await instanceAddress.getOwner()}`);
             instanceAddressText.innerHTML = instanceAddress;
             console.log(`Instance created at : ${instanceAddress}`);
 
@@ -166,13 +156,15 @@ async function submit() {
             try {
                 const contractOwner = await contract.getOwner();
                 if (contractOwner == signer.address) {
-                    console.log("Challenge réussi !!!!!");
                     $.ajax({
+                        type: "GET",
                         url: `http://localhost:3000/request-flag/${signer.address}`,
-                        type: "get",
-                        success: function (response) {
-                            console.log(response);
-                        },
+                    }).done(function (data) {
+                        console.log("Challenge réussi !!!!!");
+                        console.log(
+                            `Bravo, vous avez réussi ! Le flag est : ${data.flag}`,
+                        );
+                        flagContainer.innerHTML = `Bravo, vous avez réussi ! Le flag est : ${data.flag}`;
                     });
                 }
             } catch (error) {

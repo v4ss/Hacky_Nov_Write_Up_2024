@@ -1,5 +1,5 @@
 const ethers = require("ethers");
-const factoryAddress = "0x23959FD3269e6a351c14A765c86c2a1B807Fe306";
+const factoryAddress = "0x9f072C6807Eeb722DaDB3284A4e10F22ADF3f07E";
 const factoryAbi = [
     {
         inputs: [],
@@ -69,15 +69,26 @@ require("dotenv").config();
 const express = require("express");
 const app = express();
 const port = 3000;
+const flag = "HN0x03{Ge_s4pp3lle_Grr00t!}";
+const cors = require("cors");
+
+const corsOptions = {
+    origin: "*",
+    credentials: true, //access-control-allow-credentials:true
+    optionSuccessStatus: 200,
+};
+
+app.use(cors(corsOptions));
 
 app.get("/", async (req, res) => {
-    res.send("Hacky'Nov Blockchain API");
+    res.send("Hacky'Nov Blockchain API - Keccak");
 });
 
 app.get("/request-flag/:userAddress", async (req, res) => {
     const userAddress = req.params.userAddress;
     if (userAddress == factoryAddress) {
         res.send("Use your own address !");
+        return 0;
     }
 
     const provider = new ethers.JsonRpcProvider(process.env.SEPOLIA_RPC_URL);
@@ -86,21 +97,33 @@ app.get("/request-flag/:userAddress", async (req, res) => {
     // To load a factory contract
     const factory = new ethers.Contract(factoryAddress, factoryAbi, wallet);
 
-    let userContractAddress = await factory.getContractByAddress(userAddress);
+    try {
+        let userContractAddress =
+            await factory.getContractByAddress(userAddress);
+        if (
+            userContractAddress == "0x0000000000000000000000000000000000000000"
+        ) {
+            res.send("Address don't create instance");
+            return 0;
+        }
 
-    // To load user contract
-    const userContract = new ethers.Contract(
-        userContractAddress,
-        contractAbi,
-        wallet,
-    );
+        // To load user contract
+        const userContract = new ethers.Contract(
+            userContractAddress,
+            contractAbi,
+            wallet,
+        );
 
-    let owner = await userContract.getOwner();
+        let owner = await userContract.getOwner();
 
-    if (owner == userAddress) {
-        res.send(process.env.FLAG);
-    } else {
-        res.send("Challenge non validé");
+        if (owner == userAddress) {
+            res.send({ flag });
+        } else {
+            res.send("Challenge non validé");
+            return 0;
+        }
+    } catch (e) {
+        return 0;
     }
 });
 app.listen(port, () => {
