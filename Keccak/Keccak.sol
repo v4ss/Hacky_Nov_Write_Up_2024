@@ -6,8 +6,8 @@ error Keccak__InvalidHash();
 contract Keccak {
     address private s_owner;
 
-    constructor(address owner) {
-        s_owner = owner;
+    constructor() {
+        s_owner = msg.sender;
     }
 
     function changeOwner(bytes32 hash) public {

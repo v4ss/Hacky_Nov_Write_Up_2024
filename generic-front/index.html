@@ -22,8 +22,8 @@
             <div class="chall-description">
                 <h1>Keccak</h1>
                 <hr/>
-                <button id="test">TEST</button>
                 <p>Votre mission est de devenir propriétaire de ce contrat intelligent. Sa propriété est protégée par un mécanisme de vérification unique basé sur le hashage et la connaissance de la Blockchain.</p>
+                <p>Vous utiliserez le réseau de test Sepolia pour faire vos challenges.</p>
                 <p class="disclaimer">Ce site n'est que la plateforme de déploiement et de vérification des instances des smart contracts. Il n'y a rien à tester, ni à trouver ici, tout se passe dans les contrats déployés.</p>
             </div>
             <div class="code-container">
@@ -55,12 +55,13 @@ contract Keccak {
                     </code>
                 </pre>
             </div>
-            <div class="address-container hide">
+            <div id="instanceContainer" class="address-container">
                 <p>Adresse de l'instance : <span id="instanceAddress"></span></p>
+                <p id="flag"></p>
             </div>
             <div class="button-container">
-                <button id="instanceButton"> Déployer une instance du contract </button>
-                <button id="submitButton" class="hide"> Submit Contract </button>
+                <button id="submitButton"> Vérifier l'instance </button>
+                <button id="instanceButton"> Déployer une instance du contrat </button>
             </div>
         </main>
         <footer>

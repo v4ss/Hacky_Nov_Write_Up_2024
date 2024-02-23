@@ -9,7 +9,7 @@ contract KeccakFactory {
     mapping(address => Keccak) private s_addressToContract;
 
     function createKeccakInstance() public {
-        Keccak keccakContract = new Keccak(msg.sender);
+        Keccak keccakContract = new Keccak();
         s_keccakArray.push(keccakContract);
         s_addressToContract[msg.sender] = keccakContract;
     }
