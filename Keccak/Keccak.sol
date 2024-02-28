@@ -1,14 +1,23 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.19;
 
-contract Keccak {
-    string private s_flag = "HN0x03{Ges4pp3lleGrr00t!}";
+error Keccak__InvalidHash();
 
-    function getFlag(bytes32 _hash) public view returns (string memory) {
-        require(
-            _hash == keccak256(abi.encodePacked(msg.sender)),
-            "Hash invalide"
-        );
-        return s_flag;
+contract Keccak {
+    address private s_owner;
+
+    constructor() {
+        s_owner = msg.sender;
+    }
+
+    function changeOwner(bytes32 hash) public {
+        if (hash != keccak256(abi.encodePacked(msg.sender)))
+            revert Keccak__InvalidHash();
+
+        s_owner = msg.sender;
+    }
+
+    function getOwner() public view returns (address) {
+        return s_owner;
     }
 }

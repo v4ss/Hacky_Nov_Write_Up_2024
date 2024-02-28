@@ -1,19 +1,17 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.19;
 
-interface IKeccak {
-    function getFlag(bytes32 _hash) external view returns (string memory);
-}
+import "./Keccak.sol";
 
-contract HNParticipantContract {
-    IKeccak keccakChallenge;
+contract KeccakSolution {
+    Keccak s_keccakChallenge;
 
-    constructor(address _keccakChallengeAddress) {
-        keccakChallenge = IKeccak(_keccakChallengeAddress);
+    constructor(address keccakChallengeAddress) {
+        s_keccakChallenge = Keccak(keccakChallengeAddress);
     }
 
     function retrieveFlag() public view returns (string memory) {
         bytes32 hash = keccak256(abi.encodePacked(address(this)));
-        return keccakChallenge.getFlag(hash);
+        return s_keccakChallenge.getFlag(hash);
     }
 }
