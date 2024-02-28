@@ -12,7 +12,7 @@ contract AuctionHouse {
     topBidder = msg.sender;
     bid[msg.sender] = 1000 * (1 ether);
     bidState = true;
-    organizer = address(0x29b6Ca462AeBc053374456516c68f20784a3D4dE);
+    organizer = address(this);
   }
 
   modifier onlyOrganizer {
