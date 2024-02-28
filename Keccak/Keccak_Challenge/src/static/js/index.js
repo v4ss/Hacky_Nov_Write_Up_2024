@@ -158,7 +158,7 @@ async function submit() {
                 if (contractOwner == signer.address) {
                     $.ajax({
                         type: "GET",
-                        url: `http://localhost:3000/request-flag/${signer.address}`,
+                        url: `http://localhost:8789/request-flag/${signer.address}`,
                     }).done(function (data) {
                         console.log("Challenge réussi !!!!!");
                         console.log(
