@@ -1,5 +1,4 @@
 const ethers = require("ethers");
-const factoryAddress = "0x9f072C6807Eeb722DaDB3284A4e10F22ADF3f07E";
 const factoryAbi = [
     {
         inputs: [],
@@ -69,7 +68,8 @@ require("dotenv").config();
 const express = require("express");
 const app = express();
 const port = 3000;
-const flag = "HN0x03{Ge_s4pp3lle_Grr00t!}";
+const factoryAddress = process.env.FACTORY_ADDRESS;
+const flag = process.env.FLAG;
 const cors = require("cors");
 
 const corsOptions = {
@@ -81,7 +81,7 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 app.get("/", async (req, res) => {
-    res.send("Hacky'Nov Blockchain API - Keccak");
+    res.send(`Hacky'Nov Blockchain API - ${process.env.CHALL_NAME}`);
 });
 
 app.get("/request-flag/:userAddress", async (req, res) => {
