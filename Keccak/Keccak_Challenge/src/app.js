@@ -46,24 +46,7 @@ const factoryAbi = [
         type: "function",
     },
 ];
-const contractAbi = [
-    { inputs: [], stateMutability: "nonpayable", type: "constructor" },
-    { inputs: [], name: "Keccak__InvalidHash", type: "error" },
-    {
-        inputs: [{ internalType: "bytes32", name: "hash", type: "bytes32" }],
-        name: "changeOwner",
-        outputs: [],
-        stateMutability: "nonpayable",
-        type: "function",
-    },
-    {
-        inputs: [],
-        name: "getOwner",
-        outputs: [{ internalType: "address", name: "", type: "address" }],
-        stateMutability: "view",
-        type: "function",
-    },
-];
+
 require("dotenv").config();
 const express = require("express");
 const app = express();
@@ -110,7 +93,7 @@ app.get("/request-flag/:userAddress", async (req, res) => {
         // To load user contract
         const userContract = new ethers.Contract(
             userContractAddress,
-            contractAbi,
+            ["function getOwner() public view returns (address)"],
             wallet,
         );
 

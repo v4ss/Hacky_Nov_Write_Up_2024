@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blockchain Challenge</title>
+</head>
+<body>
+    <h1>Blockchain Challenge</h1>
+    <button id="but">CLIQUER</button>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.3.2/socket.io.js"></script>
+    <script>
+        const socket = io('http://localhost:3000');
+
+        // Écoutez les messages émis par le backend via Socket.IO
+        socket.on('flag', (flag) => {
+            // Mettez à jour l'interface utilisateur avec le flag
+            console.log(flag);
+        });
+    </script>
+</body>
+</html>
