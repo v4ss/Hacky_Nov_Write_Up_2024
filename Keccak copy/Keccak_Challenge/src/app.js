@@ -105,7 +105,7 @@ const app = express();
 const cors = require("cors");
 const port = 3000;
 
-const factoryAddress = "0x6fd81a7d4f07aA5B487D01bCe87313e32864c975";
+const factoryAddress = process.env.FLAG;
 const flag = process.env.FLAG;
 
 const corsOptions = {
