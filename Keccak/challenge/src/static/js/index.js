@@ -160,10 +160,13 @@ async function verifyInstance() {
         );
         // Appeler la fonction verifyInstance() sur la factory pour vérifier une instance
         const response = await factoryContract.verifyInstance();
+        await response.wait();
         // Si réponse positive, on va récupérer le flag
         if (response) {
             console.log("Instance vérifiée avec succès !");
-            console.log("Acceptez la deuxième transaction");
+            console.log(
+                "Acceptez la deuxième transaction pour recevoir le flag",
+            );
             console.log("Envoie du flag en cours ...");
             // Requète au back pour récupérer le flag si l'instance est bien vérifiée
             $.ajax({

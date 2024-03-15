@@ -1,3 +1,6 @@
 [submodule "Keccak copy/contracts/lib/forge-std"]
 	path = Keccak copy/contracts/lib/forge-std
 	url = https://github.com/foundry-rs/forge-std
+[submodule "Keccak/lib/forge-std"]
+	path = Keccak/lib/forge-std
+	url = https://github.com/foundry-rs/forge-std

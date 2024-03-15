@@ -2,28 +2,13 @@ const ethers = require("ethers");
 const factoryAbi = [
     {
         inputs: [],
+        name: "KeccakFactory__NotHacked",
+        type: "error",
+    },
+    {
+        inputs: [],
         name: "createInstance",
         outputs: [],
-        stateMutability: "nonpayable",
-        type: "function",
-    },
-    {
-        inputs: [],
-        name: "resetVerifState",
-        outputs: [],
-        stateMutability: "nonpayable",
-        type: "function",
-    },
-    {
-        inputs: [],
-        name: "verifyInstance",
-        outputs: [
-            {
-                internalType: "bool",
-                name: "",
-                type: "bool",
-            },
-        ],
         stateMutability: "nonpayable",
         type: "function",
     },
@@ -79,22 +64,17 @@ const factoryAbi = [
         type: "function",
     },
     {
-        inputs: [
-            {
-                internalType: "address",
-                name: "userAddress",
-                type: "address",
-            },
-        ],
-        name: "verifState",
-        outputs: [
-            {
-                internalType: "bool",
-                name: "",
-                type: "bool",
-            },
-        ],
-        stateMutability: "view",
+        inputs: [],
+        name: "resetVerifState",
+        outputs: [],
+        stateMutability: "nonpayable",
+        type: "function",
+    },
+    {
+        inputs: [],
+        name: "verifyInstance",
+        outputs: [],
+        stateMutability: "nonpayable",
         type: "function",
     },
 ];
@@ -105,7 +85,7 @@ const app = express();
 const cors = require("cors");
 const port = 3000;
 
-const factoryAddress = process.env.FLAG;
+const factoryAddress = process.env.FACTORY_ADDRESS;
 const flag = process.env.FLAG;
 
 const corsOptions = {
