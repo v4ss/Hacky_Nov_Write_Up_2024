@@ -2,9 +2,7 @@
 FROM nginx:latest
 
 # Copier les fichiers de l'application dans le répertoire web du serveur Nginx
-COPY ./Keccak_Challenge/src/static /usr/share/nginx/html
+COPY ./challenge/src/static /usr/share/nginx/html
 
 # Exposer le port sur lequel le serveur Nginx va écouter (normalement, il est déjà exposé par défaut)
 EXPOSE 80
-
-# Aucune commande CMD nécessaire car l'image Nginx par défaut démarre automatiquement le serveur
