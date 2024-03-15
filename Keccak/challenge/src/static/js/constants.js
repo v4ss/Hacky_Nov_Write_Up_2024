@@ -1,4 +1,4 @@
-export const factoryAddress = "0x66dC4A0f7e37a67757BD4776c53141Cd0BF55C60";
+export const factoryAddress = "0x1d9626D84c862953995b590EDAe4E234f073F87B";
 export const factoryAbi = [
     {
         inputs: [],
