@@ -1,4 +1,4 @@
-# KECCAK - WriteUp
+# KECCAK 2 - WriteUp
 
 <div align="center">
   <a href="https://hackynov.fr"><img src="./img/Logo+Texte-Hacky&apos;Nov-Depths-White.svg" alt="Hacky'Nov" width="50%"></a>
@@ -13,14 +13,14 @@ Les challenges Blockchain se déploient et se vérifient sur une autre plateform
 **La description du challenge :**
 
 ```
-Votre mission est de devenir propriétaire de ce contrat intelligent. Sa propriété est protégée par un mécanisme de vérification unique basé sur le hashage et la connaissance de la Blockchain.
+Vous allez devoir récupérer un nombre secret en analysant le code du contrat. Votre but est de devenir "owner" du contrat en utilisant vos connaissances sur la Blockchain.
 
 Vous utiliserez le réseau de test Sepolia pour faire vos challenges.
 ```
 
 | Nom du challenge | Catégorie  | Nombre de points | Nombre de résolution |
 | ---------------- | ---------- | ---------------- | -------------------- |
-| Keccak           | Blockchain | A définir        | 0/XX                 |
+| Keccak_2         | Blockchain | A définir        | 0/XX                 |
 
 ## Déploiement du challenge
 
@@ -52,35 +52,30 @@ Le but est de devenir owner du contrat. On voit une fonction `getOwner()` en vis
 
 ### Analyse du code
 
-On remarque dans le code une fonction qui nous permet de devenir owner : `changeOwner()`. Elle prend en paramètre un **hash** qui est à calculé et si l'on donne le bon, alors on récupère l'ownership de l'instance.
-Il suffit de calculer le hash de notre adresse avec la fonction `keccak256()` et de l'envoyer en paramètre lors de l'appel de la fonction.
+On remarque dans le code une fonction qui nous permet de devenir owner : `changeOwner()`. Elle prend en paramètre un **nombre secret** que nous devons trouver et si l'on donne le bon, alors on récupère l'ownership de l'instance.
+On voit que le contrat le compare au hash d'un nombre stocké sur un autre contrat dont l'adresse est : **0x6Bb436f76fa0d3BC02EdEAB425594B350dd4Ed2B**.
+
+![Remix3](./img//remix3.png)
+
+On va donc devoir aller chercher ce nombre secret dans ce contrat.
+Direction <a href="https://sepolia.etherscan.io/">Etherscan</a> pour regarder si le contrat a été vérifié.
 
 ### Exploitation
 
-Pour ce faire, nous allons créer un contrat qui va nous le calculer.
+Le contrat est bien vérifié et nous avons donc accès à son code. On voit que le secret number est donné au constructeur lors du déploiement du contrat.
 
-```js
-// SPDX-License-Identifier: MIT
-pragma solidity ^0.8.19;
+![Etherscan1](./img/etherscan1.png)
 
-contract KeccakSolution {
-    // Call this function to calculate the hash who permits you to become owner
-    // Get the hash and call the function changeOwner() with it
-    function getHash() public view returns (bytes32) {
-        bytes32 hash = keccak256(abi.encodePacked(msg.sender));
-        return hash;
-    }
-}
-```
+Si on descend plus bas dans l'onglet "Contract" on peut récupérer la valeur qui a été donné en constructeur à la base.
+Une autre méthode aurait été de récupérer la valeur du Slot#1 du Storage de ce contrat. Mais nous utiliserons cette méthode pour un autre challenge.
 
-Déployons ce contrat et récupérons le hash de notre adresse.
+![Etherscan2](./img/etherscan2.png)
 
-![Remix3](./img/remix3.png)
-
-Appelons la fonction `changeOwner()` en renseignant notre hash en paramètre.
-BINGO ! Si l'on rappelle la fonction `getOwner()`, nous pouvons voir que notre adresse s'affiche !
+Il ne nous reste plus qu'à appeler notre fonction pour changer l'ownership du contrat en spécifiant en argument notre nombre secret.
 
 ![Remix4](./img/remix4.png)
+
+nous somme maintenant owner du contrat, nous pouvons aller demander le flag !
 
 ### Envoi de l'instance pour vérification
 
@@ -90,4 +85,4 @@ Si tout est bon, alors le flag s'affichera sur la page et dans la console.
 
 **BRAVO !**
 
-FLAG : **HN0x03{Ge_s4pp3lle_Grr00t!}**
+FLAG : **HN0x03{3tH3rSc4n_4_3v3R}**
