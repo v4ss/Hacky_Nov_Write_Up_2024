@@ -1,4 +1,4 @@
-# KECCAK 2 - WriteUp
+# Storage - WriteUp
 
 <div align="center">
   <a href="https://hackynov.fr"><img src="./img/Logo+Texte-Hacky&apos;Nov-Depths-White.svg" alt="Hacky'Nov" width="50%"></a>
@@ -20,11 +20,11 @@ Vous utiliserez le réseau de test Sepolia pour faire vos challenges.
 
 | Nom du challenge | Catégorie  | Nombre de points | Nombre de résolution |
 | ---------------- | ---------- | ---------------- | -------------------- |
-| Keccak_2         | Blockchain | A définir        | 0/XX                 |
+| Storage          | Blockchain | A définir        | 0/XX                 |
 
 ## Déploiement du challenge
 
-La première étape avant de se lancer dans la résolution de `Keccak` est de connecter son wallet à la plateforme. Il suffit d'avoir un wallet à disposition (par exemple <a href="https://metamask.io/">Metamask</a>) et de quelques **$ETH** de test sur le réseau **Sepolia**. (que vous pouvez récupérer gratuitement sur des faucet comme <a href="https://www.alchemy.com/faucets/ethereum-sepolia">Alchemy</a> ou <a href="https://www.infura.io/faucet/sepolia">Infura</a>)
+La première étape avant de se lancer dans la résolution de `Storage` est de connecter son wallet à la plateforme. Il suffit d'avoir un wallet à disposition (par exemple <a href="https://metamask.io/">Metamask</a>) et de quelques **$ETH** de test sur le réseau **Sepolia**. (que vous pouvez récupérer gratuitement sur des faucet comme <a href="https://www.alchemy.com/faucets/ethereum-sepolia">Alchemy</a> ou <a href="https://www.infura.io/faucet/sepolia">Infura</a>)
 
 Un fois cela fait, vous pouvez cliquer sur le bouton `CONNECT` en haut à droite et connecter votre wallet.
 
