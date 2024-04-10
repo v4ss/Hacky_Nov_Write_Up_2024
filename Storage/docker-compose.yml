@@ -7,7 +7,7 @@ services:
       no_cache: true
     image: storage_back:latest
     ports:
-      - "4021:3000" # Mapper le port du conteneur à un port sur la machine hôte
+      - "4023:3000" # Mapper le port du conteneur à un port sur la machine hôte
     # environment:
     #   - SMART_CONTRACT_ADDRESS=<adresse_du_smart_contract>
     #   - OTHER_ENV_VARIABLE=<autre_variable>
@@ -21,4 +21,4 @@ services:
       no_cache: true
     image: storage_front:latest
     ports:
-      - "4022:80" # Mapper le port du conteneur à un port sur la machine hôte
+      - "4024:80" # Mapper le port du conteneur à un port sur la machine hôte
