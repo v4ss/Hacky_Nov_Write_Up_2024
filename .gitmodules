@@ -13,3 +13,6 @@
 [submodule "Storage/contracts/lib/forge-std"]
 	path = Storage/contracts/lib/forge-std
 	url = https://github.com/foundry-rs/forge-std
+[submodule "Fightoo/contracts/lib/forge-std"]
+	path = Fightoo/contracts/lib/forge-std
+	url = https://github.com/foundry-rs/forge-std
