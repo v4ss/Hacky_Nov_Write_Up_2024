@@ -5,9 +5,9 @@ services:
       context: ./ # Chemin vers le dossier contenant le Dockerfile du back-end
       dockerfile: Dockerfile.back
       no_cache: true
-    image: storage_back:latest
+    image: fightoo_back:latest
     ports:
-      - "4023:3000" # Mapper le port du conteneur à un port sur la machine hôte
+      - "4061:3000" # Mapper le port du conteneur à un port sur la machine hôte
     # environment:
     #   - SMART_CONTRACT_ADDRESS=<adresse_du_smart_contract>
     #   - OTHER_ENV_VARIABLE=<autre_variable>
@@ -19,6 +19,6 @@ services:
       context: ./ # Chemin vers le dossier contenant le Dockerfile du front-end
       dockerfile: Dockerfile.front
       no_cache: true
-    image: storage_front:latest
+    image: fightoo_front:latest
     ports:
-      - "4024:80" # Mapper le port du conteneur à un port sur la machine hôte
+      - "4062:80" # Mapper le port du conteneur à un port sur la machine hôte

@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Hacky'Nov - Storage</title>
+        <title>Hacky'Nov - Fightoo</title>
         <link rel="stylesheet" href="css/styles.css" />
     </head>
     <body id="body">
@@ -20,9 +20,9 @@
 
         <main>
             <div class="chall-description">
-                <h1>Storage</h1>
+                <h1>Fightoo</h1>
                 <hr/>
-                <p>Vous allez devoir récupérer un nombre secret en analysant le code du contrat. Votre but est de devenir "owner" du contrat en utilisant vos connaissances sur la Blockchain.</p>
+                <p>Vous allez devoir parier sur des combats et gagner 10 fois d'affilé ! Vous avez intérêt à être très chanceux ...</p>
                 <p>Vous utiliserez le réseau de test Sepolia pour faire vos challenges.</p>
                 <p class="disclaimer">Ce site n'est que la plateforme de déploiement et de vérification des instances des smart contracts. Il n'y a rien à tester, ni à trouver ici, tout se passe dans les contrats déployés.</p>
             </div>
@@ -32,29 +32,33 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-error Storage__InvalidSecretNumber();
-
-contract Storage {
-    address private s_owner;
-    uint128 private s_mySuperValue;
-    uint16 private s_myLittleValue;
-    string private s_message =
-        "Fouillez dans les abysses, vous trouverez peut etre quelques chose ...";
-    uint256 private s_secretNumber;
+contract Fightoo {
+    uint256 public consecutiveWins;
+    uint256 lastHash;
+    uint256 FACTOR = 57896044618658097711785492504343953926634992332820282019728792003956564819968;
 
     constructor() {
-        s_owner = msg.sender;
+        consecutiveWins = 0;
     }
 
-    function changeOwner(uint256 secretNumber) external {
-        if (secretNumber != s_secretNumber)
-            revert Storage__InvalidSecretNumber();
+    function wins(bool _guess) public returns (bool) {
+        uint256 blockValue = uint256(blockhash(block.number-1));
 
-        s_owner = msg.sender;
-    }
+        if (lastHash == blockValue) {
+            revert();
+        }
 
-    function getOwner() external view returns (address) {
-        return s_owner;
+        lastHash = blockValue;
+        uint256 FightResult = uint256(uint256(blockValue) / FACTOR);
+        bool winner = FightResult == 1 ? true : false;
+
+        if (winner == _guess) {
+            consecutiveWins++;
+            return true;
+        } else {
+            consecutiveWins = 0;
+            return false;
+        }
     }
 }                                
                     </code>

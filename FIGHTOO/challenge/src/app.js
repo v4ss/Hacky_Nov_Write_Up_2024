@@ -9,15 +9,15 @@ const factoryAbi = [
     },
     {
         inputs: [],
+        name: "FightooFactory__NotHacked",
+        type: "error",
+    },
+    {
+        inputs: [],
         name: "resetVerifState",
         outputs: [],
         stateMutability: "nonpayable",
         type: "function",
-    },
-    {
-        inputs: [],
-        name: "StorageFactory__NotHacked",
-        type: "error",
     },
     {
         inputs: [],

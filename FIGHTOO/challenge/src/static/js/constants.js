@@ -1,4 +1,4 @@
-export const factoryAddress = "0x18101Ee2C5B27ABb2Bf1DbD2be086813246d6C14";
+export const factoryAddress = "0xe372F7e72f23F33C75AF442Aa2e1ac790eFF9dD9";
 export const factoryAbi = [
     {
         inputs: [],
@@ -9,15 +9,15 @@ export const factoryAbi = [
     },
     {
         inputs: [],
+        name: "FightooFactory__NotHacked",
+        type: "error",
+    },
+    {
+        inputs: [],
         name: "resetVerifState",
         outputs: [],
         stateMutability: "nonpayable",
         type: "function",
-    },
-    {
-        inputs: [],
-        name: "StorageFactory__NotHacked",
-        type: "error",
     },
     {
         inputs: [],
