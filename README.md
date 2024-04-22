@@ -31,7 +31,7 @@ Pro : [Rayan Guerroumi](https://www.linkedin.com/in/rayan-guerroumi-303645193/)
 
 # Write-up
 
-| Challenge name | Category   | Autor                                                           |
+| Challenge name | Category   | Author                                                          |
 | -------------- | ---------- | --------------------------------------------------------------- |
 | Keccak         | Blockchain | [v4ss](https://www.linkedin.com/in/florian-allione-40879817a/)  |
 | Keccak 2       | Blockchain | [v4ss](https://www.linkedin.com/in/florian-allione-40879817a/)  |
