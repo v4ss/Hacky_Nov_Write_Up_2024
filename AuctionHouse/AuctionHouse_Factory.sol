@@ -1,34 +1,54 @@
 // SPDX-License-Identifier: MIT
-
 pragma solidity ^0.8.0;
 
 import "./AuctionHouse.sol";
 
-contract AuctionHouseFactory {
-    AuctionHouse[] private s_auctionHouseArray;
-    mapping(address => AuctionHouse) private s_addressToContract;
+error StorageFactory__NotHacked();
 
-    function createAuctionHouseContract() public {
-        AuctionHouse auctionHouseContract = new AuctionHouse();
-        s_auctionHouseArray.push(auctionHouseContract);
-        s_addressToContract[msg.sender] = auctionHouseContract;
+contract StorageFactory {
+    struct Instance {
+        address instanceAddress;
+        bool submited;
     }
 
-    function getMyContract() public view returns (AuctionHouse) {
-        return s_addressToContract[msg.sender];
+    mapping(address => Instance) private s_instances;
+
+    function createInstance() external {
+        AuctionHouse instance = new AuctionHouse();
+        s_instances[msg.sender].instanceAddress = address(instance);
+        s_instances[msg.sender].submited = false;
     }
 
-    function getContractByAddress(
+    function verifyInstance() external {
+        if (!s_instances[msg.sender].submited) {
+            AuctionHouse instance = AuctionHouse(payable(getMyInstance()));
+            if (instance.getTopBidder() != msg.sender) {
+                revert StorageFactory__NotHacked();
+            } else {
+                s_instances[msg.sender].submited = true;
+            }
+        }
+    }
+
+    function resetVerifState() external {
+        if (s_instances[msg.sender].submited) {
+            s_instances[msg.sender].submited = false;
+        }
+    }
+
+    function getMyInstance() public view returns (address) {
+        return s_instances[msg.sender].instanceAddress;
+    }
+
+    function getInstanceAddress(
         address userAddress
-    ) public view returns (AuctionHouse) {
-        return s_addressToContract[userAddress];
+    ) external view returns (address) {
+        return s_instances[userAddress].instanceAddress;
     }
 
-    function getAuctionHouseArray() public view returns (AuctionHouse[] memory) {
-        return s_auctionHouseArray;
-    }
-
-    function getAuctionHouseArrayAtIndex(uint256 index) public view returns (AuctionHouse) {
-        return s_auctionHouseArray[index];
+    function getInstanceVerifState(
+        address userAddress
+    ) external view returns (bool) {
+        return s_instances[userAddress].submited;
     }
 }
