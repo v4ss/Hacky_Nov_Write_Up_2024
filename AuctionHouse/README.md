@@ -13,7 +13,7 @@ Les challenges Blockchain se déploient et se vérifient sur une autre plateform
 **La description du challenge :**
 
 ```
-Vous allez devoir récupérer un nombre secret en analysant le code du contrat. Votre but est de devenir "owner" du contrat en utilisant vos connaissances sur la Blockchain.
+Votre but est de gagner l'enchère organisée par les pirates de la LockSea. Ils ont amassé un beau butin mais certains de ces pirates ne sont peut-être pas très fidèle à leur équipage. Devenez le topBidder pour remporter le challenge !
 
 Vous utiliserez le réseau de test Sepolia pour faire vos challenges.
 ```
@@ -46,7 +46,6 @@ On compile le code du contrat à pirater et on colle l'adresse de notre instance
 ![Remix1](./img/remix1.png)
 
 Il s'affiche ensuite en dessous dans la partie `Deployed Contracts`.
-Le but est de gagner 10 fois d'affilé son pari de combat.
 
 ### Analyse du code
 
