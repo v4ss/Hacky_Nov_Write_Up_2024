@@ -4,7 +4,7 @@ services:
     build:
       context: ./ # Chemin vers le dossier contenant le Dockerfile du back-end
       dockerfile: Dockerfile.back
-    image: storage_back:latest
+    image: thelosttreasure_back:latest
     ports:
       - "4066:3000" # Mapper le port du conteneur à un port sur la machine hôte
     depends_on:
@@ -14,6 +14,6 @@ services:
     build:
       context: ./ # Chemin vers le dossier contenant le Dockerfile du front-end
       dockerfile: Dockerfile.front
-    image: storage_front:latest
+    image: thelosttreasure_front:latest
     ports:
       - "4067:80" # Mapper le port du conteneur à un port sur la machine hôte
