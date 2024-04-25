@@ -18,15 +18,12 @@ const droiteButton = document.getElementById("droite");
 const derriereButton = document.getElementById("derriere");
 const undoButton = document.getElementById("undo");
 const resetButton = document.getElementById("reset");
-const tresorButton = document.getElementById("tresor");
 
 devantButton.onclick = devant;
 gaucheButton.onclick = gauche;
 droiteButton.onclick = droite;
 derriereButton.onclick = derriere;
 undoButton.onclick = undoMoving;
-resetButton.onclick = resetPosition;
-tresorButton.onclick = getTreasure;
 
 connectButton.onclick = connexionManagement;
 instanceButton.onclick = createInstance;
@@ -287,31 +284,6 @@ async function resetPosition() {
             "Erreur lors du changement de position du bâteau : ",
             error,
         );
-    }
-}
-
-// Fonction pour récupérer le trésor si on est à la bonne position
-async function getTreasure() {
-    // Check si Sepolia Network
-    const sepolia = await checkNetwork();
-    if (sepolia == false) {
-        return 0;
-    }
-    try {
-        const signer = await getSigner();
-        const factoryContract = new ethers.Contract(
-            factoryAddress,
-            factoryAbi,
-            signer,
-        );
-        // Appeler la fonction getTreasure()
-        const transaction = await factoryContract.getTreasure();
-        await transaction.wait();
-        console.log(
-            "Vous avez récupérer le trésor !! Vous pouvez vérifier votre instance",
-        );
-    } catch (error) {
-        console.error("Erreur pour récupérer le trésor : ", error);
     }
 }
 

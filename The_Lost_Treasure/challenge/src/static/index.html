@@ -22,7 +22,7 @@
             <div class="chall-description">
                 <h1>The Lost Treasure</h1>
                 <hr/>
-                <p>Vous allez devoir utiliser des fonctions spécifiques du contrat intelligent pour trouver et récupérer un coffre submergé au fond de l'océan ...</p>
+                <p>Vous allez devoir utiliser des fonctions spécifiques du contrat intelligent pour trouver et récupérer un coffre submergé au fond de l'océan ... Déplacez-vous à l'endroit indiqué par la carte pour réussir le challenge.</p>
                 <p>Vous utiliserez le réseau de test Sepolia pour faire vos challenges.</p>
                 <p class="disclaimer">Ce site n'est que la plateforme de déploiement et de vérification des instances des smart contracts. Il n'y a rien à tester, ni à trouver ici, tout se passe dans les contrats déployés.</p>
             </div>
@@ -52,7 +52,6 @@ contract TheLostTreasure {
         "derriere"
     ];
     string[] private s_submarinePosition;
-    bool public s_isAGoodPosition = false;
 
     function goForward() public {
         s_submarinePosition.push("devant");
@@ -78,27 +77,12 @@ contract TheLostTreasure {
         delete s_submarinePosition;
     }
 
-    function getTheLostTreasure() public returns (string memory) {
-        if (
-            keccak256(abi.encode(s_submarinePosition)) !=
-            keccak256(abi.encode(s_chestMap))
-        ) revert TheLostTreasure__InvalidPosition();
-
-        s_isAGoodPosition = true;
-
-        return "You get the Lost Treasure !";
-    }
-
     function getSubmarinePosition() public view returns (string[] memory) {
         return s_submarinePosition;
     }
 
     function getChestPosition() public view returns (string[] memory) {
         return s_chestMap;
-    }
-
-    function doYouHaveGotTheTreasure() public view returns (bool) {
-        return s_isAGoodPosition;
     }
 }
                     </code>
@@ -121,7 +105,6 @@ contract TheLostTreasure {
                     <div class="tresor">
                         <button id="undo">Undo le dernier mouvement</button>
                         <button id="reset">Réinitialiser la position</button>
-                        <button id="tresor">Récupérer le trésor</button>
                     </div>
                 </div>
             </div>
