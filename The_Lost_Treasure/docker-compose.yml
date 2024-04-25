@@ -6,7 +6,7 @@ services:
       dockerfile: Dockerfile.back
     image: storage_back:latest
     ports:
-      - "4023:3000" # Mapper le port du conteneur à un port sur la machine hôte
+      - "4066:3000" # Mapper le port du conteneur à un port sur la machine hôte
     depends_on:
       - frontend # S'assurer que le conteneur du front-end démarre avant celui du back-end
 
@@ -16,4 +16,4 @@ services:
       dockerfile: Dockerfile.front
     image: storage_front:latest
     ports:
-      - "4024:80" # Mapper le port du conteneur à un port sur la machine hôte
+      - "4067:80" # Mapper le port du conteneur à un port sur la machine hôte
