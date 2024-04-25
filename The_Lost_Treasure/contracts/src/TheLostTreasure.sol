@@ -21,7 +21,6 @@ contract TheLostTreasure {
         "derriere"
     ];
     string[] private s_submarinePosition;
-    bool public s_isAGoodPosition = false;
 
     function goForward() public {
         s_submarinePosition.push("devant");
@@ -47,26 +46,11 @@ contract TheLostTreasure {
         delete s_submarinePosition;
     }
 
-    function getTheLostTreasure() public returns (string memory) {
-        if (
-            keccak256(abi.encode(s_submarinePosition)) !=
-            keccak256(abi.encode(s_chestMap))
-        ) revert TheLostTreasure__InvalidPosition();
-
-        s_isAGoodPosition = true;
-
-        return "You get the Lost Treasure !";
-    }
-
     function getSubmarinePosition() public view returns (string[] memory) {
         return s_submarinePosition;
     }
 
     function getChestPosition() public view returns (string[] memory) {
         return s_chestMap;
-    }
-
-    function doYouHaveGotTheTreasure() public view returns (bool) {
-        return s_isAGoodPosition;
     }
 }

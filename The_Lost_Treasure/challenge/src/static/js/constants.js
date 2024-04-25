@@ -1,15 +1,8 @@
-export const factoryAddress = "0x4Ee67c7da17A0fc4C7e01376954F1d9A2831e61A";
+export const factoryAddress = "0x5BBCf23F0d85e9B24eCa0eB0d61DA6e5DD26F09e";
 export const factoryAbi = [
     {
         inputs: [],
         name: "createInstance",
-        outputs: [],
-        stateMutability: "nonpayable",
-        type: "function",
-    },
-    {
-        inputs: [],
-        name: "getTreasure",
         outputs: [],
         stateMutability: "nonpayable",
         type: "function",

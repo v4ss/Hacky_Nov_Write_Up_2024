@@ -9,13 +9,6 @@ const factoryAbi = [
     },
     {
         inputs: [],
-        name: "getTreasure",
-        outputs: [],
-        stateMutability: "nonpayable",
-        type: "function",
-    },
-    {
-        inputs: [],
         name: "goBackward",
         outputs: [],
         stateMutability: "nonpayable",

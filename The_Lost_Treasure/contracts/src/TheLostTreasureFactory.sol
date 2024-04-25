@@ -22,7 +22,10 @@ contract TheLostTreasureFactory {
     function verifyInstance() external {
         if (!s_instances[msg.sender].submited) {
             TheLostTreasure instance = TheLostTreasure(getMyInstance());
-            if (instance.doYouHaveGotTheTreasure() != false) {
+            if (
+                keccak256(abi.encode(instance.getSubmarinePosition())) !=
+                keccak256(abi.encode(instance.getChestPosition()))
+            ) {
                 revert TheLostTreasureFactory__NotHacked();
             } else {
                 s_instances[msg.sender].submited = true;
@@ -64,11 +67,6 @@ contract TheLostTreasureFactory {
     function undoMoving() external {
         TheLostTreasure instance = TheLostTreasure(getMyInstance());
         instance.undoMoving();
-    }
-
-    function getTreasure() external {
-        TheLostTreasure instance = TheLostTreasure(getMyInstance());
-        instance.getTheLostTreasure();
     }
 
     function getMyInstance() public view returns (address) {
