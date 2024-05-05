@@ -5,6 +5,12 @@ WORKDIR /challenge
 
 # Copier le reste des fichiers de l'application
 COPY ./challenge .
+# COPY ./challenge/src/app.js ./src/app.js
+# COPY ./challenge/.env ./.env
+# COPY ./challenge/package.json ./package.json
+# COPY ./challenge/package.json ./package.json
+# COPY ./challenge/package-lock.json ./package-lock.json
+# COPY ./challenge/yarn.lock ./yarn.lock
 
 # Installer les dépendances
 RUN npm install
