@@ -68,7 +68,7 @@ You will have to rename the `.env.example` to `.env` and put the two missing var
 - `PRIVATE_KEY` : A wallet private key with no fund, zero tokens and a wallet you will never use ! (it is just to call view functions)
 - `SEPOLIA_RPC_URL` : RPC address of a node to interact with Sepolia Network (Check Alchemy or Infura node providers)
 
-At this time, all is good.
+At this point, all is good.
 
 You can run the docker container :
 
