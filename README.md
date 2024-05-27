@@ -77,6 +77,6 @@ cd <chall-name>
 docker compose up -d --build
 ```
 
-Container running, you can have fun ! :)
+Container is running, you can have fun ! :)
 
 Kiss <3
