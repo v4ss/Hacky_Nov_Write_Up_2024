@@ -1,19 +1,19 @@
-version: "3"
+version: "3.8"
 services:
   backend:
     build:
-      context: ./ # Chemin vers le dossier contenant le Dockerfile du back-end
+      context: ./
       dockerfile: Dockerfile.back
     image: fightoo_back:latest
     ports:
-      - "4061:3000" # Mapper le port du conteneur à un port sur la machine hôte
+      - "20011:3000"
     depends_on:
-      - frontend # S'assurer que le conteneur du front-end démarre avant celui du back-end
+      - frontend
 
   frontend:
     build:
-      context: ./ # Chemin vers le dossier contenant le Dockerfile du front-end
+      context: ./
       dockerfile: Dockerfile.front
     image: fightoo_front:latest
     ports:
-      - "4062:80" # Mapper le port du conteneur à un port sur la machine hôte
+      - "20012:80"

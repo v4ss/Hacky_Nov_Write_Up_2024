@@ -1,5 +1,3 @@
-# KECCAK - WriteUp
-
 <div align="center">
   <a href="https://hackynov.fr"><img src="./img/Logo+Texte-Hacky&apos;Nov-Depths-White.svg" alt="Hacky'Nov" width="50%"></a>
 </div>
@@ -20,7 +18,7 @@ Vous utiliserez le réseau de test Sepolia pour faire vos challenges.
 
 | Nom du challenge | Catégorie  | Nombre de points | Nombre de résolution |
 | ---------------- | ---------- | ---------------- | -------------------- |
-| Keccak           | Blockchain | A définir        | 0/XX                 |
+| Keccak           | Blockchain | 150              | 10                   |
 
 ## Déploiement du challenge
 

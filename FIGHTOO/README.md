@@ -1,5 +1,3 @@
-# Fightoo - WriteUp
-
 <div align="center">
   <a href="https://hackynov.fr"><img src="./img/Logo+Texte-Hacky&apos;Nov-Depths-White.svg" alt="Hacky'Nov" width="50%"></a>
 </div>
@@ -13,14 +11,14 @@ Les challenges Blockchain se déploient et se vérifient sur une autre plateform
 **La description du challenge :**
 
 ```
-Vous allez devoir gagner un pari sportif 10 fois d'affilées pour ce faire il faudra soit être chanceux, soit être ingénieux.
+Vous allez devoir parier sur des combats et gagner 10 fois d'affilé ! Vous avez intérêt à être très chanceux ...
 
 Vous utiliserez le réseau de test Sepolia pour faire vos challenges.
 ```
 
 | Nom du challenge | Catégorie  | Nombre de points | Nombre de résolution |
 | ---------------- | ---------- | ---------------- | -------------------- |
-| Fightoo          | Blockchain | A définir        | 0/XX                 |
+| Fightoo          | Blockchain | 200              | 3                    |
 
 ## Déploiement du challenge
 
@@ -89,7 +87,7 @@ Nous pouvons aller demander le flag !
 
 ### Envoi de l'instance pour vérification
 
-Nous avons atteint l'objectif, c'est à dire gagner 10 fois d'affilées, nous pouvons donc retourner sur la plateforme pour faire vérifier notre instance.
+Nous avons atteint l'objectif, c'est à dire devenir owner du contrat, nous pouvons donc retourner sur la plateforme pour faire vérifier notre instance.
 Il suffit de cliquer sur le bouton `VÉRIFIER L'INSTANCE` et de valider les deux transactions qui vont apparaître.
 Si tout est bon, alors le flag s'affichera sur la page et dans la console.
 

@@ -1,19 +1,19 @@
-version: "3"
+version: "3.8"
 services:
   backend:
     build:
-      context: ./ # Chemin vers le dossier contenant le Dockerfile du back-end
+      context: ./
       dockerfile: Dockerfile.back
-    image: keccak_back:latest
+    image: keccak2_back:latest
     ports:
-      - "4021:3000" # Mapper le port du conteneur à un port sur la machine hôte
+      - "20003:3000"
     depends_on:
-      - frontend # S'assurer que le conteneur du front-end démarre avant celui du back-end
+      - frontend
 
   frontend:
     build:
-      context: ./ # Chemin vers le dossier contenant le Dockerfile du front-end
+      context: ./
       dockerfile: Dockerfile.front
-    image: keccak_front:latest
+    image: keccak2_front:latest
     ports:
-      - "4022:80" # Mapper le port du conteneur à un port sur la machine hôte
+      - "20004:80"

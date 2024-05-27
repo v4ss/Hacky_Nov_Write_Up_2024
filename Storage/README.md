@@ -1,5 +1,3 @@
-# Storage - WriteUp
-
 <div align="center">
   <a href="https://hackynov.fr"><img src="./img/Logo+Texte-Hacky&apos;Nov-Depths-White.svg" alt="Hacky'Nov" width="50%"></a>
 </div>
@@ -20,7 +18,7 @@ Vous utiliserez le réseau de test Sepolia pour faire vos challenges.
 
 | Nom du challenge | Catégorie  | Nombre de points | Nombre de résolution |
 | ---------------- | ---------- | ---------------- | -------------------- |
-| Storage          | Blockchain | A définir        | 0/XX                 |
+| Storage          | Blockchain | 300              | 3                    |
 
 ## Déploiement du challenge
 
@@ -47,8 +45,6 @@ On compile le code du contrat à pirater et on colle l'adresse de notre instance
 
 Il s'affiche ensuite en dessous dans la partie `Deployed Contracts`.
 Le but est de devenir owner du contrat. On voit une fonction `getOwner()` en visibilité public : en l'appelant on récupère owner actuel qui n'est évidemment pas notre adresse de wallet.
-
-![Remix2](./img//remix2.png)
 
 ### Analyse du code
 

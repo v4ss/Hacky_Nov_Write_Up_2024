@@ -171,7 +171,7 @@ async function verifyInstance() {
             // Requète au back pour récupérer le flag si l'instance est bien vérifiée
             $.ajax({
                 type: "GET",
-                url: `http://localhost:4021/request-flag/${signer.address}`, // Si testé en local (pas dans le container docker), remplacer le port par le port 3000
+                url: `http://localhost:20003/request-flag/${signer.address}`, // Si testé en local (pas dans le container docker), remplacer le port par le port 3000
             }).done(async function (data) {
                 // On reset le state de l'utilisateur
                 const transaction = await factoryContract.resetVerifState();
